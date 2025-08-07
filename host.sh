@@ -3,7 +3,19 @@
 # https://demyx.sh
 # shellcheck disable=2001
 set -eEuo pipefail
-source "$(dirname "$0")/lang/zh-TW.sh"
+#!/bin/bash
+# Demyx
+# https://demyx.sh
+# ✅ 自動偵測並載入繁體中文語系檔
+# 優先使用相對目錄下的 lang/zh-TW.sh，否則 fallback 為 /opt 路徑
+if [[ -f "$(dirname "$0")/lang/zh-TW.sh" ]]; then
+    source "$(dirname "$0")/lang/zh-TW.sh"
+elif [[ -f /opt/demyx/lang/zh-TW.sh ]]; then
+    source /opt/demyx/lang/zh-TW.sh"
+else
+    echo "❌ 無法載入語系檔 zh-TW.sh，請確認檔案存在於 lang/ 或 /opt/demyx/lang/"
+    exit 1
+fi
 #
 #   Main.
 #
