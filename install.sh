@@ -37,3 +37,6 @@ demyx_install() {
 #   Init.
 #
 demyx_install "$@"
+
+mkdir -p /opt/demyx/lang
+curl -sSL https://raw.githubusercontent.com/leo72321/demyx/master/lang/zh-TW.sh -o /opt/demyx/lang/zh-TW.sh
