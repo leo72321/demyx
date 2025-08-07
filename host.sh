@@ -3,6 +3,7 @@
 # https://demyx.sh
 # shellcheck disable=2001
 set -eEuo pipefail
+source "$(dirname "$0")/lang/zh-TW.sh"
 #
 #   Main.
 #

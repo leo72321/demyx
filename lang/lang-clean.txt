@@ -1,0 +1,214 @@
+                          --date        Specify backup date to restore. Format: YYYY-MM-DD (defaults to today).
+                          -c            Restore app's compose.yml and .env files only (config backup).
+                          -c|-cf|-fc      View app's cron log (add f to follow).
+                          -d            Restore database only. Uses latest backup if no .sql file found.
+                          -d|-df|-fd      View app's MariaDB log (add f to follow).
+                          -e|-ef|-fe      View app's error log (add f to follow).
+                          -f              Follow log output (real-time).
+                          -f            Skip confirmation prompt when restoring an app.
+                          -f          Delete and regenerate app's non-sensitive environment variables between refreshable markers.
+                          -fr         Regenerate files and execute docker compose up -d --force-recreate --remove-orphans.
+                          -nc         Regenerate compose.yml and .env files only, no docker compose commands will be executed.
+                          -s          Skip app's config backup before regenerating files.
+                          -s|-sf|-fs      View app's docker logs (add f to follow).
+                      --env       Search for specific environment variable(s). (Usage: --env=DEMYX_APP_STACK)
+                      -j          Print output in JSON format.
+                      -l          Shows all login credentials: basic auth, code server, OLS admin (if applicable), MariaDB, WordPress.
+                      -nv         Suppress showing DB and WP volume sizes.
+                      -r              Refresh the app's compose.yml and .env files after editing. App's containers will be recreated.
+                      -r          Print raw list of installed apps without header (only works with apps).
+                    -d                                Targets an app's MariaDB container (db_<id>).
+                    -n                                Targets an app's Nginx container (nx_<id>).
+                    -w                                Targets an app's WordPress container (wp_<id>).
+                    all                               Execute docker compose commands to all apps.
+                    down                              Executes docker compose stop and rm -f.
+                    fr                                Executes docker compose up -d --force-recreate --remove-orphans.
+                   --auth                             Enable/disable basic authentication.
+                   --auth-wp                          Enable/disable basic authentication for WordPress login.
+                   --backup                           Enable/disable app backup. (Usage: --backup=<true|false>)
+                   --bedrock                          Configure a Bedrock app's mode to production/development. (Usage: --bedrock=<production|development>)
+                   --cache                            Installs and configures cache plugins depending on app's stack. Supports WP Rocket with rocket-nginx (only for the nginx-php stack). (Usage: --cache=<true|false|default|rocket>)
+                   --clean                            Export and imports database with new credentials, force downloads core WordPress files, and refresh salts.
+                   --convert                          Convert container and volume names to the new format.
+                   --db-cpu                           Configure DB container's CPU limit, --db-cpu=0 to remove limit. (Usage: --db-cpu=.50)
+                   --db-mem                           Configure DB container's memory limit, --db-mem=0 to remove limit. (Usage: --db-mem=256m)
+                   --dev                              Code-server service will be created and perform various commands to WordPress.
+                   --healthcheck                      Enable/disable healthcheck.
+                   --maintenance                      Enable/disable maintenance mode.
+                   --no-compose                       Prevents executing docker compose up -d after running a config.
+                   --opcache                          Enable/disable PHP opcache.
+                   --path             Move backup to custom path after creation. (Usage: --path=/custom/path)
+                   --php                              Switch PHP/LSPHP version. (Usage: --php=<8.2|8.3>)
+                   --php-average                      Set php-fpm child process ram average in kb. (Usage: --php-average=100000)
+                   --php-max-requests                 Update php-fpm max requests per child process. (Usage: --php-max-requests=500)
+                   --pma                              Enable/disable phpMyAdmin service.
+                   --rate-limit                       Enable/disable Nginx's rate limiting for /wp-login.php and /wp-cron.php.
+                   --redis                            Enable/disable Redis service and configures the proper plugin depending on app's stack.
+                   --sftp                             Enable/disable SFTP service. Automatically scans for open port starting with 2222.
+                   --ssl                              Enable/disable http or https. Executes wp-cli to search and replace the database.
+                   --ssl-wildcard                     Enable/disable wildcard for SSL. Executes wp-cli to search and replace the database.
+                   --stack                            Switch stack between Nginx/PHP to OpenLiteSpeed and vice versa but cannot switch from Nginx/PHP to Bedrock. The same applies to OpenLiteSpeed to OpenLiteSpeed Bedrock. (Usage: --stack=<bedrock|nginx-php|ols|ols-bedrock>)
+                   --whitelist                        Enables/disables IP whitelisting site-wide or just WordPress login. DEMYX_IP must be set by running demyx host edit. (Usage: --whitelist=<all|login>)
+                   --wp-cpu                           Configure WP container's CPU limit, --wp-cpu=0 to remove limit. (Usage: --wp-cpu=.50)
+                   --wp-mem                           Configure WP container's memory limit, --wp-mem=0 to remove limit. (Usage: --wp-mem=256m)
+                   --wp-update                        Enable/disable WordPress auto update by wp-cli. Auto updates WordPress core files, plugins, and themes.
+                   --www                              Enable/disable www subdomain for the app's domain.
+                   --xmlrpc                           Enable/disable /xmlrpc.php file by returning a 404. Disabled by default.
+                   -c                 Backup only the configs (compose.yml and .env).
+                   -d                 Backup only the database.
+                   -f                                 Skip confirmation.
+                   -l                 List all backups with file size shown.
+                  Shows commands for MariaDB, Nginx (if applicable), and WordPress containers.
+                 -d           Executes commands inside the MariaDB container. Opens bash shell if no command specified.
+                 -n           Executes commands inside the Nginx container. Opens bash shell if no command specified.
+                 -r           Execute commands as root user instead of demyx user.
+                 -t           Disable interactive mode (TTY only).
+                --auth                    Enable basic authentication for the app.
+                --cache                   Enable cache for the app.
+                --clone                   Clone an existing app. (Usage: --clone=<app>)
+                --email                   Set custom admin email instead of info@DEMYX_DOMAIN.
+                --pass|--password         Set custom admin password for the app.
+                --php                     Set PHP version. Default: 8.3. (Usage: --php=<8.2|8.3>)
+                --redis                   Enable Redis for the app.
+                --ssl                     Enable SSL for the app (requires DEMYX_DOMAIN and DEMYX_EMAIL).
+                --ssl-wildcard            Enable wildcard SSL (requires DEMYX_CF_KEY).
+                --stack                   Set stack type. Default: nginx-php. (Usage: --stack=<bedrock|nginx-php|ols|ols-bedrock>)
+                --type                    Set app type. Default: wp. (Usage: --type=<wp|php|html>)
+                --user|--username         Set custom admin username for the app.
+                --whitelist               Enable IP whitelist. Default: all. (Usage: --whitelist=<all|login>)
+                --www                     Enable www subdomain for the app.
+                -f                        Skip confirmation prompt when app already exists.
+                echo
+               -f             Skip confirmation prompt when deleting an app.
+              -r                                  Output raw value (no formatting). Does not work with credentials.
+              all                     Regenerate all app's .env/compose.yml files.
+              all                 Targets all core demyx containers, works with remove and restart
+              code                    Regenerate compose.yml and .env for the code-server service.
+              cred|credentials                    Generate username, password, and htpasswd in formatted table.
+              ctop                htop but for contaienrs
+              down|rm|remove      Stops and removes demyx container
+              edit                Edit Demyx config (~/.demyx) on the host
+              env                 Prints the content of .env inside Demyx container
+              htpasswd                            Generate htpasswd hash. (Usage: demyx utility htpasswd <username> <password>)
+              id                                  Generate random alphanumeric ID. Default: 5 characters. (Usage: demyx utility id <length>)
+              pass|password                       Generate random password. Default: 20 characters. (Usage: demyx utility password <length>)
+              rs|restart          Stops, removes, and starts demyx container
+              sh|shell                            Open shell in demyx/utilities container. Default: bash. (Usage: demyx utility shell <command>)
+              traefik                 Regenerate compose.yml for traefik service and backup acme.json.
+              up                  Starts core demyx containers
+              upgrade             Pull relevant images, refresh app configs, and delete old images
+              user|username                       Generate random username using demyx name generator.
+             -i               Update image cache only (skip helper script update).
+             -l               List all Demyx images with local/remote versions. Shows (NEW) indicator for available updates.
+             all                                      Configures all apps in a loop.
+             all                      Backup all apps in a loop.
+             traefik                  Backup Traefik's acme.json and compose.yml files.
+            echo
+           all                                    Smart pull: only pulls images that are already in the local registry.
+           apps                   Lists all installed apps with count.
+           browsersync
+           code               Executes commands inside the code-server container. Opens zsh shell if no command specified.
+           code-server:bedrock
+           code-server:browse
+           code-server:openlitespeed
+           code-server:openlitespeed-bedrock
+           code-server:wp
+           ctop
+           daily              Daily cron: system backup, WordPress backups, auto-updates, log rotation.
+           demyx
+           docker-socket-proxy
+           five-minute        Every five minute cron: app and load healthchecks.
+           hourly             Hourly cron: disk healthcheck.
+           mariadb
+           minute             Every minute cron: executes custom minute script if exists.
+           nginx
+           openlitespeed
+           openlitespeed:bedrock
+           pma
+           redis
+           six-hour           Every six hour cron: executes custom six-hour script if exists.
+           ssh
+           system                 Shows system information: build, version, hostname, IP, apps count, backups, disk, memory, uptime, load, containers.
+           traefik
+           traefik            Executes commands inside the Traefik container. Opens bash shell if no command specified.
+           utilities
+           weekly             Weekly cron: system updates.
+           wordpress
+           wordpress:bedrock
+          cron                            View Demyx cron log.
+          main                            View Demyx main log or error log.
+          traefik                         View Traefik access log or error log.
+         all                  Delete all apps from all directories (html, php, wp).
+        echo
+      -v|--version|version    Show demyx version.
+      backup                  Backup apps with config, database, or full backups.
+      compose                 Execute docker compose commands on app containers.
+      config                  Configure app settings and features.
+      cp                      Generate docker cp commands for app containers.
+      cron                    Execute scheduled maintenance tasks manually.
+      down                    Shortcut for docker compose down.
+      edit                    Edit app's .env file in nano editor.
+      exec                    Execute commands in app containers with shell access.
+      healthcheck             Check app and system health with notifications.
+      info                    Display app environment variables and system information.
+      log                     View various logs with follow options.
+      motd                    Message of the day.
+      pull                    Pull Docker images for Demyx and third-party services.
+      refresh                 Regenerate app configuration files with backups.
+      restore                 Restore apps from backups with container recreation.
+      rm                      Delete apps completely: containers, volumes, and config files.
+      run                     Create new WordPress apps with configuration options.
+      shell                       Execute commands to the demyx container, leave <arg> empty to open a bash shell
+      smtp                    Test SMTP configuration with success email.
+      up                      Shortcut for docker compose up -d.
+      update                  Check for updates and update Demyx images and helper script.
+      util|utility            Generate credentials or access the Demyx Utilities container.
+      wp                      Execute WP-CLI commands in WordPress containers.
+    echo
+- Bugs            https://demyx.sh/issues
+- Changelog       https://demyx.sh/changelog
+- Discord         https://demyx.sh/discord
+- Discussions     https://demyx.sh/discussions
+- Docs            https://demyx.sh/kb
+- IRC             https://demyx.sh/irc
+.5
+0
+Content-Type: text/html; charset=utf-8
+MIME-Version: 1.0
+Stack Trace:
+Username      demyx
+Welcome to Demyx! Please report any bugs you see.
+demyx <arg>                   Main demyx command, for more info: demyx help <arg>
+demyx backup <app> <args>             Backup specific app.
+demyx compose <app> <args> <docker compose args>      Targets an app to execute docker compose commands.
+demyx config <app> <args>                             Configure a specific app.
+demyx cp <app>    Generates docker cp commands for copying files to/from app containers.
+demyx cron <arg>              Execute demyx cron manually.
+demyx down <app>        Shortcut for docker compose down
+demyx edit <app>      <args>          Opens the app's .env file in nano editor inside the Demyx container.
+demyx exec <app> <args>       Executes commands inside the WordPress container. Opens bash shell if no command specified.
+demyx healthcheck <args>      Mainly used by demyx cron but can be executed manually. If there's no output, then everything is working smoothly. To enable notifications, fill in the values under DEMYX_MATRIX and DEMYX_SMTP when you run 'demyx host edit'.
+demyx healthcheck app         Checks if any app containers are down. Shows docker logs and log files for failed containers.
+demyx healthcheck disk        Checks disk usage and shows df output. Sends notification if usage exceeds DEMYX_HEALTHCHECK_DISK_THRESHOLD.
+demyx healthcheck load        Checks system load average and shows top output with container stats. Sends notification if 5-minute load exceeds DEMYX_HEALTHCHECK_LOAD.
+demyx host    <args>              Demyx helper commands
+demyx info <app>      <args>      Prints app's environment variables and volume sizes. Shows DB and WP volume sizes by default.
+demyx log <app>           <args>          View various logs. Default shows app's access log (last 200 lines).
+demyx motd" >> ~/.bashrc
+demyx motd" >> ~/.zshrc
+demyx pull <args>                                 Pull Docker images. Use 'all' to pull all Demyx and third-party images.
+demyx refresh <app>       <args>      Regenerate compose.yml and .env files. Creates config backup by default.
+demyx restore <app>       <args>        Restore app from backup. Removes existing app if present.
+demyx restore traefik                   Restore Traefik's acme.json and compose.yml files.
+demyx rm <app> <args>         Delete an app completely: containers, volumes, and config files.
+demyx run <app> <args>                    Create a new WordPress app with specified configuration.
+demyx smtp        Sends out a success email if SMTP is configured properly.
+demyx up <app>        Shortcut for docker compose up -d
+demyx update <args>           Check for updates and update Demyx images and helper script.
+demyx utility <type>              <args>          Generate credentials or access the Demyx Utilities container.
+demyx wp <app> <args>     Execute WP-CLI commands in the app's WordPress container.
+demyx wp all <args>       Execute WP-CLI commands on all WordPress apps. Skips apps with errors.
+external: true
+true
+{
+}
