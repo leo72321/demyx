@@ -5,9 +5,10 @@
 set -eEuo pipefail
 
 # ✅ 自動偵測並載入繁體中文語系檔
+# 優先使用相對路徑 lang/zh-TW.sh，如果不存在，使用系統安裝路徑 /opt
 if [[ -f "$(dirname "$0")/lang/zh-TW.sh" ]]; then
     source "$(dirname "$0")/lang/zh-TW.sh"
-elif [[ -f /opt/demyx/lang/zh-TW.sh" ]]; then
+elif [[ -f /opt/demyx/lang/zh-TW.sh ]]; then
     source /opt/demyx/lang/zh-TW.sh
 else
     echo "❌ 無法載入語系檔 zh-TW.sh，請確認檔案存在於 lang/ 或 /opt/demyx/lang/"
